@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <!-- <link rel="stylesheet" href="/assets/styles.css" type="text/css" /> -->
+  
     <title>Update Course</title>
 
     <style>
@@ -75,19 +75,19 @@
 
       // updating one course
       $('#button1').on('click', function(){
-        // alert('fgdf')
+       
         let id = $('form').data('id');
         var name = $('#name').val();
         var duration = $('#duration').val();
         var fees = $('#fees').val();
-        // alert(id)
+     
         $.ajax({
           type: 'PUT',
           url: '/update/' + id,
           data: {name: name, duration: duration, fees: fees},
           success: function(data){
             alert('course updated');
-            //do something with the data via front-end framework
+            
             location.reload();
           }
         });

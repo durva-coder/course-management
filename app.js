@@ -35,8 +35,3 @@ app.set('view engine', 'ejs');
 // static files
 app.use(express.static('./public'));
 
-// coursesController(app);
-
-//listen to port
-//app.listen(PORT);
-//console.log('You are listening to port 3000');

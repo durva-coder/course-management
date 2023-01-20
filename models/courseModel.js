@@ -1,12 +1,10 @@
-// var DataTypes = require('sequelize/lib/data-types');
 
-// const { Sequelize } = require(".");
 
 module.exports = (sequelize, DataTypes) => {
     const Course = sequelize.define('course', {
         id:{
             type: DataTypes.INTEGER,
-            // type: DataTypes.INTEGER,
+          
             allowNull: false,
             autoIncrement: true,
             primaryKey: true
