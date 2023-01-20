@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/assets/styles.css" type="text/css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+
+    <title>Course Management System</title>
+
+    <style>
+        body {
+            color: #566787;
+            background: #f5f5f5;
+            font-family: 'Varela Round', sans-serif;
+            font-size: 13px;
+        }
+
+        .table-responsive {
+            margin: 30px 0;
+        }
+
+        .table-wrapper {
+            background: #fff;
+            padding: 20px 25px;
+            border-radius: 3px;
+            min-width: 1000px;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+        }
+
+        .table-title {
+            padding-bottom: 15px;
+            background: #435d7d;
+            color: #fff;
+            padding: 16px 30px;
+            min-width: 100%;
+            margin: -20px -25px 10px;
+            border-radius: 3px 3px 0 0;
+        }
+
+        .table-title h2 {
+            margin: 5px 0 0;
+            font-size: 24px;
+        }
+
+        .table-title .btn-group {
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/viewAllCourses">Course Management</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/viewAllCourses">All Courses</a></li>
+                <li><a href="/viewAddCourse">Add Courses</a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <div class="container-xl">
+        <div class="table-responsive">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h2> Manage / View Courses </h2>
+                            <br><br>
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <!-- <th>id</th> -->
+                            <th>Course Name</th>
+                            <th>Course Duration</th>
+                            <th>Course Fees</th>
+                            <th>Update</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <% for( var i=0; i<courses.length; i++) { %>
+                        <tr>
+                            <!-- <td><%= i %></td> -->
+                            <td>
+                                <%= courses[i].name %>
+                            </td>
+                            <td>
+                                <%= courses[i].duration %>
+                            </td>
+                            <td>
+                                <%= courses[i].fees %>
+                            </td>
+                            <td>
+                              
+                                <a href="/displayForm/<%= courses[i].id %>" class="btn btn-primary update-btn" role="button" 
+                                    data-id="<%= courses[i].id %>">Update</a>
+                
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger btn-sm delete"
+                                    data-id="<%= courses[i].id %>" id="delete">
+                                    <span class="glyphicon glyphicon-trash"></span> Delete
+                                </button>
+                            </td>
+                        </tr>
+                        <% } %>
+                            </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="/addCourses.ejs"></script>
+    <script type="text/javascript" src="/updateForm.ejs"></script>
+    <script type="text/javascript" src="assets/courselist.js"></script>
+    <script>
+        // Deleting one course
+        $('button.btn.delete').on('click', function () {
+            var id = $(this).data('id');
+            let item = $(this);
+            // alert(JSON.parse(JSON.stringify(item)))
+            console.log(item);
+            // alert(id);
+            if (confirm("Are you sure")) {
+                $.ajax({
+                    type: 'DELETE',
+                    url: '/' + id,
+                    success: function (data) {
+                        //do something with the data via front-end framework
+                        location.reload();
+                    }
+                });
+            }
+        });
+
+        // fetching one course 
+
+        // $('.update-btn').on('click', function () {
+        //     let id = $('.update-btn').data('id');
+        //     alert(`this is id of ${id}`);
+        //     console.log(courses);
+        //     const getcourseData = getData();
+
+        // })
+
+        // const getData = function () {
+
+        //     let name = "";
+        //     let duration = "";
+        //     let fees = 0;
+
+        //     $.ajax({
+        //         type: 'GET',
+        //         url: `/${id}`,
+        //         // data: {courseName: name, courseDuration: duration, courseFees: fees},
+        //         success: function (data){
+        //             //do something with the data via front-end framework
+        //             location.reload();
+        //         }
+        //     });
+        // }
+
+
+    </script>
+</body>
+
+</html>
