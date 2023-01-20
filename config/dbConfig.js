@@ -1,8 +1,9 @@
 module.exports = {
-    host: 'localhost',
-    user: 'root',
-    password: 'Ztlab@98',
-    db: 'course_management',
+    port: '3310',
+    host: '15.206.7.200',
+    user: 'durvab',
+    password: 'T35Td3Fi4fO1AwA1MkKK9b68',
+    db: 'durvab',
     dialect: 'mysql',
     
     pool: {
